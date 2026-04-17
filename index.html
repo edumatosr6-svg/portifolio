@@ -200,6 +200,44 @@
         flex-shrink: 0;
       }
 
+      .card-top-right {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+
+      .card-demo-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: var(--green);
+        border: 1px solid var(--green);
+        color: #0b1120;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: filter 0.2s, transform 0.15s;
+        user-select: none;
+      }
+
+      .card-demo-btn:hover,
+      .card-demo-btn:focus-visible {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+        outline: none;
+      }
+
+      .card-demo-btn svg { display: block; }
+
+      .card-demo-btn.local {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
       .card-desc {
         color: var(--text-muted);
         font-size: 0.875rem;
@@ -369,6 +407,48 @@
     <script>
       const GITHUB_USER = "edumatosr6-svg";
 
+      // Override map: repo name (lowercase) → live demo URL.
+      // Used when the repo doesn't have a "homepage" field set in its GitHub settings.
+      const DEMO_URLS = {
+        biomed2: "https://biomed-chi.vercel.app",
+        cardapio: "./cardapio/",
+        pokemon: "./pokemon/pokemon/frontend/",
+      };
+
+      // Projects to always show even if not in GitHub API
+      const LOCAL_PROJECTS = [
+        {
+          name: "cardapio",
+          description: "Cardápio digital interativo com interface moderna.",
+          language: "HTML",
+          fork: false,
+          archived: false,
+          html_url: "https://github.com/edumatosr6-svg/cardapio",
+          stargazers_count: 0,
+          forks_count: 0,
+          pushed_at: new Date().toISOString(),
+        },
+        {
+          name: "pokemon",
+          description: "Pokédex web com busca e visualização de Pokémons.",
+          language: "HTML",
+          fork: false,
+          archived: false,
+          html_url: "https://github.com/edumatosr6-svg/pokemon",
+          stargazers_count: 0,
+          forks_count: 0,
+          pushed_at: new Date().toISOString(),
+        },
+      ];
+
+      function demoUrlFor(repo) {
+        const fromMap = DEMO_URLS[repo.name.toLowerCase()];
+        if (fromMap) return fromMap;
+        const hp = (repo.homepage || "").trim();
+        if (hp && /^https?:\/\//i.test(hp)) return hp;
+        return null;
+      }
+
       // Language colors (GitHub colors)
       const LANG_COLORS = {
         TypeScript: "#3178c6",
@@ -422,6 +502,18 @@
           repo.description ||
           "<em>Sem descrição. Acesse o repositório para saber mais.</em>";
 
+        const demoUrl = demoUrlFor(repo);
+        const isLocal = demoUrl && demoUrl.startsWith("./");
+        const demoBtn = demoUrl
+          ? `<span class="card-demo-btn${isLocal ? " local" : ""}" data-demo="${demoUrl}" role="button" tabindex="0" title="${isLocal ? "Abrir projeto" : "Abrir demo ao vivo"}">
+               ${isLocal
+                 ? `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3H7.5L5.989 1.338A1.75 1.75 0 004.773 1H1.75z"/></svg>`
+                 : `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm6.854-1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1z"/></svg>`
+               }
+               ${isLocal ? "Abrir" : "Ver demo"}
+             </span>`
+          : "";
+
         a.innerHTML = `
           <div class="card-top">
             <span class="card-name">
@@ -430,7 +522,10 @@
               </svg>
               ${repo.name}
             </span>
-            ${repo.fork ? '<span class="card-fork-badge">fork</span>' : ""}
+            <span class="card-top-right">
+              ${demoBtn}
+              ${repo.fork ? '<span class="card-fork-badge">fork</span>' : ""}
+            </span>
           </div>
           <p class="card-desc">${desc}</p>
           <div class="card-footer">
@@ -510,8 +605,14 @@
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const repos = await res.json();
 
+          // Merge local projects that aren't already in GitHub response
+          const githubNames = new Set(repos.map((r) => r.name.toLowerCase()));
+          const extras = LOCAL_PROJECTS.filter(
+            (p) => !githubNames.has(p.name.toLowerCase())
+          );
+
           // Sort: non-forks first, then by pushed_at
-          allRepos = repos
+          allRepos = [...repos, ...extras]
             .filter((r) => !r.archived)
             .sort((a, b) => {
               if (a.fork !== b.fork) return a.fork ? 1 : -1;
@@ -567,6 +668,26 @@
           btn.classList.add("active");
           renderGrid(btn.dataset.lang);
         });
+
+      // Demo button clicks (delegated) — stop the card <a> from navigating and
+      // open the live demo URL instead.
+      document.getElementById("grid").addEventListener("click", (e) => {
+        const btn = e.target.closest(".card-demo-btn");
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const url = btn.dataset.demo;
+        if (url) window.open(url, "_blank", "noopener");
+      });
+      document.getElementById("grid").addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const btn = e.target.closest(".card-demo-btn");
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const url = btn.dataset.demo;
+        if (url) window.open(url, "_blank", "noopener");
+      });
 
       loadRepos();
     </script>
