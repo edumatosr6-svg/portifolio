@@ -79,31 +79,31 @@ function generateSuggestions(text, scores) {
     suggestions.push({
       type: 'clarity',
       severity: 'medium',
-      message: 'Add more descriptive details to improve clarity',
+      message: 'Adicione mais detalhes descritivos para melhorar a clareza',
     })
   }
   if (scores.specificity < 70) {
-    if (!/\b(format|output)\b/i.test(text)) {
+    if (!/\b(format|output|formato|saída)\b/i.test(text)) {
       suggestions.push({
         type: 'specificity',
         severity: 'high',
-        message: 'Specify desired output format (e.g., JSON, bullet list, markdown)',
+        message: 'Especifique o formato de saída desejado (ex: JSON, lista, markdown)',
       })
     }
-    if (!/\b(example|e\.g\.)\b/i.test(text)) {
+    if (!/\b(example|e\.g\.|exemplo|por exemplo)\b/i.test(text)) {
       suggestions.push({
         type: 'specificity',
         severity: 'medium',
-        message: 'Consider adding concrete examples',
+        message: 'Considere adicionar exemplos concretos',
       })
     }
   }
   if (scores.context < 70) {
-    if (!/\b(you are|act as)\b/i.test(text)) {
+    if (!/\b(you are|act as|você é|você é um)\b/i.test(text)) {
       suggestions.push({
         type: 'context',
         severity: 'high',
-        message: 'Define a role for the AI (e.g., "You are an expert...")',
+        message: 'Defina um papel para a IA (ex: "Você é um especialista em...")',
       })
     }
   }
@@ -111,14 +111,14 @@ function generateSuggestions(text, scores) {
     suggestions.push({
       type: 'structure',
       severity: 'low',
-      message: 'Break into sections using lists or headings',
+      message: 'Divida em seções usando listas ou títulos',
     })
   }
   if (/\[[A-Z\s]+\]/.test(text)) {
     suggestions.push({
       type: 'completeness',
       severity: 'high',
-      message: 'Replace placeholders ([BRACKETS]) with real content',
+      message: 'Substitua os marcadores ([COLCHETES]) por conteúdo real',
     })
   }
 
@@ -128,22 +128,17 @@ function generateSuggestions(text, scores) {
 export function optimizePrompt(text) {
   let optimized = text.trim()
 
-  // Add role if missing
-  if (!/\b(you are|act as)\b/i.test(optimized)) {
-    optimized = `You are an expert assistant. ${optimized}`
+  if (!/\b(you are|act as|você é)\b/i.test(optimized)) {
+    optimized = `Você é um assistente especialista.\n\n${optimized}`
   }
 
-  // Add clarity markers
-  if (!/\b(please|kindly)\b/i.test(optimized) && optimized.length > 20) {
-    optimized = optimized.replace(/\.$/, '. Please be specific and thorough.')
-    if (!optimized.endsWith('.')) {
-      optimized += '. Please be specific and thorough.'
-    }
+  if (optimized.length > 20 && !optimized.includes('específico')) {
+    if (!optimized.endsWith('.')) optimized += '.'
+    optimized += ' Seja específico e detalhado na resposta.'
   }
 
-  // Add output format hint
-  if (!/\b(format|output|markdown|JSON|list)\b/i.test(optimized)) {
-    optimized += '\n\nFormat your response clearly with headings and bullet points where appropriate.'
+  if (!/\b(format|output|markdown|JSON|lista|formato)\b/i.test(optimized)) {
+    optimized += '\n\nFormate sua resposta de forma clara, usando títulos e tópicos quando apropriado.'
   }
 
   return optimized

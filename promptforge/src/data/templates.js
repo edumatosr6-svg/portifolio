@@ -1,146 +1,146 @@
 export const TEMPLATES = [
   {
     id: 'code-review',
-    category: 'Code',
-    name: 'Code Review',
+    category: 'Código',
+    name: 'Revisão de Código',
     icon: '🔍',
-    prompt: `You are an expert code reviewer. Review the following code for:
-- Bugs and potential issues
-- Performance improvements
-- Best practices and design patterns
-- Security vulnerabilities
+    prompt: `Você é um revisor de código especialista. Revise o código abaixo buscando:
+- Bugs e problemas potenciais
+- Melhorias de performance
+- Boas práticas e padrões de design
+- Vulnerabilidades de segurança
 
-Code:
+Código:
 \`\`\`
-[PASTE CODE HERE]
+[COLE O CÓDIGO AQUI]
 \`\`\`
 
-Provide specific, actionable feedback.`,
+Forneça feedback específico e acionável.`,
   },
   {
     id: 'blog-writer',
-    category: 'Content',
-    name: 'Blog Post Writer',
+    category: 'Conteúdo',
+    name: 'Escritor de Blog',
     icon: '✍️',
-    prompt: `Write a comprehensive blog post about [TOPIC].
+    prompt: `Escreva um artigo completo sobre [TÓPICO].
 
-Target audience: [AUDIENCE]
-Tone: [professional/casual/technical]
-Length: 1000-1500 words
+Público-alvo: [PÚBLICO]
+Tom: [profissional/casual/técnico]
+Tamanho: 1000-1500 palavras
 
-Structure:
-1. Engaging intro with a hook
-2. Main points with examples
-3. Practical takeaways
-4. Clear conclusion
+Estrutura:
+1. Introdução envolvente com gancho
+2. Pontos principais com exemplos
+3. Conclusões práticas
+4. Conclusão clara
 
-Include relevant subheadings and avoid fluff.`,
+Inclua subtítulos relevantes e evite enrolação.`,
   },
   {
     id: 'bug-explainer',
-    category: 'Code',
-    name: 'Bug Explainer',
+    category: 'Código',
+    name: 'Explicador de Bugs',
     icon: '🐛',
-    prompt: `Explain this error message clearly:
+    prompt: `Explique esta mensagem de erro de forma clara:
 
-Error: [PASTE ERROR]
+Erro: [COLE O ERRO]
 
-Provide:
-1. What the error means (plain language)
-2. Common causes
-3. Step-by-step solution
-4. How to prevent it in the future`,
+Forneça:
+1. O que o erro significa (linguagem simples)
+2. Causas comuns
+3. Solução passo a passo
+4. Como prevenir no futuro`,
   },
   {
     id: 'summarizer',
-    category: 'Analysis',
-    name: 'Document Summarizer',
+    category: 'Análise',
+    name: 'Resumidor de Documentos',
     icon: '📄',
-    prompt: `Summarize the following text concisely:
+    prompt: `Resuma o texto abaixo de forma concisa:
 
-[PASTE TEXT]
+[COLE O TEXTO]
 
-Output format:
-- Main thesis (1 sentence)
-- Key points (3-5 bullets)
-- Notable insights or data
-- Conclusion
+Formato de saída:
+- Tese principal (1 frase)
+- Pontos-chave (3-5 tópicos)
+- Dados ou insights relevantes
+- Conclusão
 
-Keep it under 200 words total.`,
+Máximo de 200 palavras no total.`,
   },
   {
     id: 'brainstorm',
-    category: 'Creative',
-    name: 'Idea Brainstorm',
+    category: 'Criativo',
+    name: 'Brainstorm de Ideias',
     icon: '💡',
-    prompt: `Generate 10 creative ideas for [TOPIC].
+    prompt: `Gere 10 ideias criativas para [TÓPICO].
 
-Constraints:
-- Must be practical and actionable
-- Vary in complexity (simple to advanced)
-- Avoid generic suggestions
+Restrições:
+- Devem ser práticas e executáveis
+- Varie a complexidade (simples a avançada)
+- Evite sugestões genéricas
 
-For each idea, provide:
-1. Title
-2. One-sentence description
-3. Why it works`,
+Para cada ideia, forneça:
+1. Título
+2. Descrição em uma frase
+3. Por que funciona`,
   },
   {
     id: 'tutor',
-    category: 'Learning',
-    name: 'Concept Tutor',
+    category: 'Aprendizado',
+    name: 'Tutor de Conceitos',
     icon: '🎓',
-    prompt: `Explain [CONCEPT] to me as if I'm a [beginner/intermediate/advanced] learner.
+    prompt: `Explique [CONCEITO] como se eu fosse um aluno [iniciante/intermediário/avançado].
 
-Include:
-1. Simple definition
-2. Real-world analogy
-3. A concrete example
-4. Common misconceptions
-5. How it connects to broader topics
+Inclua:
+1. Definição simples
+2. Analogia do mundo real
+3. Exemplo concreto
+4. Conceitos errôneos comuns
+5. Como se conecta a tópicos mais amplos
 
-Use markdown for formatting.`,
+Use markdown para formatação.`,
   },
   {
     id: 'email',
-    category: 'Content',
-    name: 'Professional Email',
+    category: 'Conteúdo',
+    name: 'E-mail Profissional',
     icon: '📧',
-    prompt: `Write a professional email with these details:
+    prompt: `Escreva um e-mail profissional com os seguintes detalhes:
 
-To: [RECIPIENT]
-Purpose: [REQUEST/FOLLOW-UP/PROPOSAL/etc]
-Key points: [LIST MAIN POINTS]
-Tone: [formal/friendly/urgent]
+Para: [DESTINATÁRIO]
+Objetivo: [SOLICITAÇÃO/FOLLOW-UP/PROPOSTA/etc]
+Pontos principais: [LISTE OS PONTOS]
+Tom: [formal/amigável/urgente]
 
-Include clear subject line, appropriate greeting, and a call-to-action.`,
+Inclua assunto claro, saudação adequada e chamada para ação.`,
   },
   {
     id: 'seo',
     category: 'Marketing',
-    name: 'SEO Optimizer',
+    name: 'Otimizador SEO',
     icon: '🎯',
-    prompt: `Optimize this content for SEO:
+    prompt: `Otimize este conteúdo para SEO:
 
-[PASTE CONTENT]
+[COLE O CONTEÚDO]
 
-Target keyword: [KEYWORD]
+Palavra-chave alvo: [PALAVRA-CHAVE]
 
-Provide:
-1. Optimized title (max 60 chars)
-2. Meta description (max 160 chars)
-3. 5 related keywords to include
-4. Rewritten intro with keyword
-5. Suggested H2/H3 structure`,
+Forneça:
+1. Título otimizado (máx. 60 caracteres)
+2. Meta descrição (máx. 160 caracteres)
+3. 5 palavras-chave relacionadas para incluir
+4. Introdução reescrita com a palavra-chave
+5. Estrutura sugerida de H2/H3`,
   },
 ]
 
 export const CATEGORIES = [
-  { id: 'all', name: 'All', icon: '📚' },
-  { id: 'Code', name: 'Code', icon: '💻' },
-  { id: 'Content', name: 'Content', icon: '📝' },
-  { id: 'Analysis', name: 'Analysis', icon: '📊' },
-  { id: 'Creative', name: 'Creative', icon: '🎨' },
-  { id: 'Learning', name: 'Learning', icon: '🎓' },
+  { id: 'all', name: 'Todos', icon: '📚' },
+  { id: 'Código', name: 'Código', icon: '💻' },
+  { id: 'Conteúdo', name: 'Conteúdo', icon: '📝' },
+  { id: 'Análise', name: 'Análise', icon: '📊' },
+  { id: 'Criativo', name: 'Criativo', icon: '🎨' },
+  { id: 'Aprendizado', name: 'Aprendizado', icon: '🎓' },
   { id: 'Marketing', name: 'Marketing', icon: '📈' },
 ]

@@ -5,7 +5,7 @@ import { usePromptStore } from '../store/promptStore'
 export default function Sidebar({ onNewTemplate }) {
   const { prompts, activePromptId, setActive, deletePrompt, toggleFavorite, createPrompt } = usePromptStore()
   const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState('all') // all | favorites
+  const [filter, setFilter] = useState('all')
 
   const filtered = prompts
     .filter((p) => (filter === 'favorites' ? p.favorite : true))
@@ -17,7 +17,6 @@ export default function Sidebar({ onNewTemplate }) {
 
   return (
     <aside className="w-72 bg-surface border-r border-border flex flex-col">
-      {/* Logo */}
       <div className="p-5 border-b border-border">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center glow-purple">
@@ -25,23 +24,22 @@ export default function Sidebar({ onNewTemplate }) {
           </div>
           <div>
             <h1 className="text-lg font-bold gradient-text">PromptForge</h1>
-            <p className="text-[10px] text-muted -mt-0.5">AI Prompt Studio</p>
+            <p className="text-[10px] text-muted -mt-0.5">Estúdio de Prompts IA</p>
           </div>
         </div>
       </div>
 
-      {/* Actions */}
       <div className="p-3 space-y-2 border-b border-border">
         <button
           onClick={() =>
             createPrompt({
-              title: 'New Prompt',
-              content: 'You are an expert assistant.\n\nTask: ',
+              title: 'Novo Prompt',
+              content: 'Você é um assistente especialista.\n\nTarefa: ',
             })
           }
           className="w-full py-2 px-3 gradient-bg text-white rounded-lg flex items-center justify-center gap-2 font-medium text-sm hover:opacity-90 transition-opacity glow-purple"
         >
-          <Plus size={16} /> New Prompt
+          <Plus size={16} /> Novo Prompt
         </button>
         <button
           onClick={onNewTemplate}
@@ -51,7 +49,6 @@ export default function Sidebar({ onNewTemplate }) {
         </button>
       </div>
 
-      {/* Search */}
       <div className="p-3 border-b border-border">
         <div className="relative">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
@@ -59,7 +56,7 @@ export default function Sidebar({ onNewTemplate }) {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search prompts..."
+            placeholder="Buscar prompts..."
             className="w-full bg-card border border-border rounded-lg pl-9 pr-3 py-2 text-sm text-primary placeholder:text-subtle focus:outline-none focus:border-accent"
           />
         </div>
@@ -70,7 +67,7 @@ export default function Sidebar({ onNewTemplate }) {
               filter === 'all' ? 'bg-accent text-white' : 'bg-card text-muted hover:text-primary'
             }`}
           >
-            All ({prompts.length})
+            Todos ({prompts.length})
           </button>
           <button
             onClick={() => setFilter('favorites')}
@@ -78,18 +75,17 @@ export default function Sidebar({ onNewTemplate }) {
               filter === 'favorites' ? 'bg-accent text-white' : 'bg-card text-muted hover:text-primary'
             }`}
           >
-            ⭐ Favs
+            ⭐ Favoritos
           </button>
         </div>
       </div>
 
-      {/* Prompts list */}
       <div className="flex-1 overflow-y-auto p-2">
         {filtered.length === 0 ? (
           <div className="p-6 text-center text-muted text-sm">
             <p className="mb-2">🚀</p>
-            <p>No prompts yet</p>
-            <p className="text-xs text-subtle mt-1">Create one to get started</p>
+            <p>Nenhum prompt ainda</p>
+            <p className="text-xs text-subtle mt-1">Crie um para começar</p>
           </div>
         ) : (
           filtered.map((prompt) => (
@@ -106,7 +102,7 @@ export default function Sidebar({ onNewTemplate }) {
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-primary truncate">{prompt.title}</p>
                   <p className="text-xs text-muted line-clamp-1 mt-0.5">
-                    {prompt.content.slice(0, 60) || 'Empty prompt...'}
+                    {prompt.content.slice(0, 60) || 'Prompt vazio...'}
                   </p>
                 </div>
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -138,9 +134,8 @@ export default function Sidebar({ onNewTemplate }) {
         )}
       </div>
 
-      {/* Footer */}
       <div className="p-3 border-t border-border text-center">
-        <p className="text-[10px] text-subtle">Built by Eduardo Matos</p>
+        <p className="text-[10px] text-subtle">Desenvolvido por Eduardo Matos</p>
       </div>
     </aside>
   )

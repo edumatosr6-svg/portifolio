@@ -27,18 +27,16 @@ export default function TemplateModal({ onClose }) {
         onClick={(e) => e.stopPropagation()}
         className="bg-surface border border-border rounded-2xl w-full max-w-4xl max-h-[80vh] flex flex-col overflow-hidden"
       >
-        {/* Header */}
         <div className="p-5 border-b border-border flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold text-primary">Template Library</h2>
-            <p className="text-xs text-muted mt-0.5">Curated prompts to jumpstart your work</p>
+            <h2 className="text-xl font-bold text-primary">Biblioteca de Templates</h2>
+            <p className="text-xs text-muted mt-0.5">Prompts prontos para acelerar seu trabalho</p>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-card rounded-lg transition-colors">
             <X size={20} className="text-muted" />
           </button>
         </div>
 
-        {/* Categories */}
         <div className="px-5 py-3 border-b border-border flex gap-2 overflow-x-auto">
           {CATEGORIES.map((cat) => (
             <button
@@ -55,7 +53,6 @@ export default function TemplateModal({ onClose }) {
           ))}
         </div>
 
-        {/* Templates grid */}
         <div className="flex-1 overflow-y-auto p-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {filtered.map((template) => (
