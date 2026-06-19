@@ -72,6 +72,68 @@
 
       html, body { cursor: var(--cursor-style, auto); }
       .cursor-hide, .cursor-hide * { cursor: none !important; }
+
+      /* ---------- Responsive / Mobile ---------- */
+      html, body { overflow-x: hidden; max-width: 100%; }
+
+      @media (max-width: 768px) {
+        /* Header: stack the logo / nav / availability badge */
+        header[style*="padding: 24px 40px"] {
+          flex-wrap: wrap !important;
+          gap: 12px !important;
+          padding: 16px 18px !important;
+          justify-content: center !important;
+          text-align: center !important;
+        }
+        header nav[style*="border-radius: 999px"] {
+          flex-wrap: wrap !important;
+          justify-content: center !important;
+          order: 3 !important;
+          width: 100% !important;
+        }
+
+        /* Section padding shrink */
+        section[style*="padding: 120px 40px"] { padding: 64px 20px !important; }
+        [style*="padding: 120px 40px 40px"] { padding: 64px 20px 40px !important; }
+        [style*="padding: 72px 40px 40px"] { padding: 32px 20px 32px !important; }
+
+        /* Collapse every multi-column grid into a single column */
+        [style*="grid-template-columns: 1fr 1fr 1fr"],
+        [style*="grid-template-columns: 1fr 1.3fr"],
+        [style*="grid-template-columns: 1fr 1fr"],
+        [style*="grid-template-columns: repeat(2, 1fr)"],
+        [style*="grid-template-columns: repeat(3, 1fr)"],
+        [style*="grid-template-columns: repeat(4, 1fr)"] {
+          grid-template-columns: 1fr !important;
+          gap: 24px !important;
+        }
+        /* Project rows */
+        [style*="grid-template-columns: 80px 1.5fr 1fr 180px"] {
+          grid-template-columns: 1fr !important;
+          gap: 10px !important;
+          padding: 24px 20px !important;
+          padding-left: 20px !important;
+        }
+
+        /* Oversized display headings */
+        .display { font-size: clamp(40px, 12vw, 72px) !important; }
+        h1[style*="clamp(90px, 15vw, 260px)"] { font-size: clamp(46px, 14vw, 90px) !important; }
+        [style*="clamp(100px, 16vw, 260px)"] { font-size: clamp(48px, 15vw, 96px) !important; }
+
+        /* Hero accent word offset would push off-screen */
+        [style*="translateX(64px)"] { transform: translateX(0) !important; }
+
+        /* Buttons */
+        .big-btn { padding: 16px 22px !important; font-size: 14px !important; }
+
+        /* Long email link would overflow */
+        a[href^="mailto:"] {
+          font-size: clamp(18px, 6.5vw, 30px) !important;
+          word-break: break-word !important;
+          overflow-wrap: anywhere !important;
+          max-width: 100% !important;
+        }
+      }
     </style>
 
     <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
