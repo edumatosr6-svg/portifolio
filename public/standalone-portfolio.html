@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" style="--accent: #ff6b47; --accent2: #7dd3fc;"><head>
+<!DOCTYPE html><html lang="pt-BR" style="--accent: #ff6b47; --accent2: #7dd3fc;"><head>
 
 
     <meta charset="UTF-8">
@@ -69,6 +69,15 @@
       @keyframes heroReveal { 0% { transform: translateY(110%); } 100% { transform: translateY(0); } }
       @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
       @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
 
       html, body { cursor: var(--cursor-style, auto); }
       .cursor-hide, .cursor-hide * { cursor: none !important; }
@@ -1345,7 +1354,7 @@ var TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accentColor": "#ff6b47",
   "accentColor2": "#7dd3fc",
   "heroHeadline": "FULL-STACK MATOS.",
-  "availability": "Available Q2–Q3 2026",
+  "availability": "Disponível para novos projetos",
   "showTicker": true,
   "show3D": true,
   "showCursor": true,
@@ -1401,9 +1410,9 @@ var COPY = {
   },
   pt: {
     nav: ["Projetos", "Sobre", "Skills", "Processo", "Contato"],
-    hire: "Contratar",
+    hire: "Solicitar orçamento",
     browse: "ou veja projetos selecionados ↓",
-    intro_label: "→ Intro",
+    intro_label: "→ Soluções",
     intro_body: function intro_body(accent) {
       return /*#__PURE__*/React.createElement(React.Fragment, null, "Eduardo Matos, ", /*#__PURE__*/React.createElement("strong", {
         style: {
@@ -1414,14 +1423,14 @@ var COPY = {
           lineNumber: 41,
           columnNumber: 47
         }
-      }, "dev full-stack"), " em Curitiba. Entrego produtos \u2014 de plataformas de agendamento a cl\xEDnicas de biomedicina.");
+      }, "desenvolvedor full-stack"), " em Curitiba. Desenvolvo sites, sistemas de gestão e automações para pequenos negócios.");
     },
-    stack_label: "→ Stack",
-    cta_label: "→ Cta",
+    stack_label: "→ Tecnologias",
+    cta_label: "→ Orçamento",
     work_title: ["Projetos", "selecionados/"],
     about_title: ["A", "pessoa", "por trás/"],
     about_blurb: function about_blurb(accent) {
-      return /*#__PURE__*/React.createElement(React.Fragment, null, "Dev full-stack pleno, obcecado pelo of\xEDcio de ", /*#__PURE__*/React.createElement("span", {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, "Desenvolvedor full-stack focado em ", /*#__PURE__*/React.createElement("span", {
         style: {
           color: accent
         },
@@ -1430,15 +1439,15 @@ var COPY = {
           lineNumber: 46,
           columnNumber: 79
         }
-      }, "entregar "), " produtos \xFAteis e bem feitos. Aceitando ", /*#__PURE__*/React.createElement("u", {
+      }, "entregar "), " produtos úteis, responsivos e fáceis de manter. Disponível para ", /*#__PURE__*/React.createElement("u", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 46,
           columnNumber: 167
         }
-      }, "trabalhos freelance"), " no momento.");
+      }, "novos projetos"), ".");
     },
-    about_long: "Gosto de transitar por todo o stack — desenhar APIs, trabalhar interfaces responsivas, e cuidar dos detalhes que fazem um produto parecer bem-feito. Me dou bem com founders que se importam tanto com a experiência final quanto com o resultado de negócio.",
+    about_long: "Trabalho do planejamento ao deploy: organizo o escopo, construo interfaces responsivas, desenvolvo APIs e compartilho versões para acompanhamento. Meu objetivo é entregar uma solução clara, estável e alinhada ao negócio.",
     skills_title: ["O que uso", "no dia-a-dia."],
     process_title: ["Como eu", "trabalho/"],
     services_title: ["O que eu", "construo/"],
@@ -1451,12 +1460,15 @@ var PROJECTS = [{
   title: "Agendamento",
   tagline: {
     en: "Scheduling platform for clinics & barbershops",
-    pt: "Plataforma de agendamento para clínicas e barbearias"
+    pt: "Agendamento online com painel para serviços, profissionais e disponibilidade"
   },
   tech: ["React", "Node.js", "TypeScript", "Monorepo"],
   status: "in-progress",
   year: "2026",
-  role: "Full-stack",
+  role: {
+    en: "End-to-end product",
+    pt: "Produto ponta a ponta"
+  },
   liveUrl: "https://client-psi-ten-41.vercel.app",
   githubUrl: "https://github.com/edumatosr6-svg/agendamento"
 }, {
@@ -1465,12 +1477,15 @@ var PROJECTS = [{
   title: "LZO Biomédica",
   tagline: {
     en: "Aesthetic biomedicine clinic — Curitiba",
-    pt: "Clínica de biomedicina estética — Curitiba"
+    pt: "Site comercial responsivo com catálogo de procedimentos e agendamento"
   },
   tech: ["Next.js", "TypeScript", "Tailwind"],
   status: "online",
   year: "2026",
-  role: "Design + Dev",
+  role: {
+    en: "Design + development",
+    pt: "Design + desenvolvimento"
+  },
   liveUrl: "https://biomed2.vercel.app",
   githubUrl: "https://github.com/edumatosr6-svg/biomed2"
 }, {
@@ -1479,12 +1494,15 @@ var PROJECTS = [{
   title: "Cardápio",
   tagline: {
     en: "Digital restaurant menu",
-    pt: "Cardápio digital de restaurante"
+    pt: "Cardápio digital rápido e responsivo para navegação por produtos"
   },
   tech: ["React 19", "TypeScript", "Vite", "Tailwind"],
   status: "online",
   year: "2026",
-  role: "Front-end",
+  role: {
+    en: "Responsive interface",
+    pt: "Interface responsiva"
+  },
   liveUrl: "https://cardapio-three-omega.vercel.app",
   githubUrl: "https://github.com/edumatosr6-svg/cardapio"
 }, {
@@ -1493,12 +1511,15 @@ var PROJECTS = [{
   title: "TaskFlow",
   tagline: {
     en: "Collaborative Kanban task management SaaS",
-    pt: "SaaS colaborativo de gestão de tarefas com Kanban"
+    pt: "Gestão de tarefas em Kanban com estado persistente e fluxo colaborativo"
   },
   tech: ["React", "Zustand", "Tailwind CSS", "Vite"],
   status: "online",
   year: "2026",
-  role: "Full-stack",
+  role: {
+    en: "SaaS product",
+    pt: "Produto SaaS"
+  },
   liveUrl: "https://taskflow-edumatos.vercel.app",
   githubUrl: "https://github.com/edumatosr6-svg/portifolio"
 }, {
@@ -1507,12 +1528,15 @@ var PROJECTS = [{
   title: "Pokémon Evolution",
   tagline: {
     en: "Evolution-compatibility REST API",
-    pt: "API REST de compatibilidade de evolução"
+    pt: "API REST e interface para validar regras de evolução por elemento"
   },
   tech: ["Python", "Flask", "REST API"],
   status: "in-progress",
   year: "2026",
-  role: "Back-end",
+  role: {
+    en: "API + interface",
+    pt: "API + interface"
+  },
   liveUrl: "https://pokemon-fawn-nu.vercel.app",
   githubUrl: "https://github.com/edumatosr6-svg/Pokemon-evolution"
 }, {
@@ -1521,12 +1545,15 @@ var PROJECTS = [{
   title: "PromptForge",
   tagline: {
     en: "AI prompt engineering studio with real-time quality analysis",
-    pt: "Estúdio de prompts com IA e análise de qualidade em tempo real"
+    pt: "Editor de prompts com modelos prontos e análise de qualidade em tempo real"
   },
   tech: ["React", "Zustand", "Tailwind CSS", "Vite"],
   status: "online",
   year: "2026",
-  role: "Full-stack",
+  role: {
+    en: "AI product",
+    pt: "Produto com IA"
+  },
   liveUrl: "https://promptforge-edumatos.vercel.app",
   githubUrl: "https://github.com/edumatosr6-svg/portifolio"
 }];
@@ -1603,7 +1630,7 @@ var PROCESS = [{
     desc: "Ship weekly. Preview URLs every Friday. You steer as it takes shape."
   },
   pt: {
-    title: "Build",
+    title: "Desenvolvimento",
     desc: "Entregas semanais. URL de preview toda sexta. Você ajusta conforme toma forma."
   }
 }, {
@@ -1652,6 +1679,7 @@ function TiltedGrid(_ref) {
     var disposed = false;
     var mount = mountRef.current;
     if (!mount) return;
+    if (window.innerWidth <= 768 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var load = function load() {
       return new Promise(function (resolve) {
         if (window.THREE) return resolve(window.THREE);
@@ -2439,7 +2467,7 @@ function Work(_ref3) {
       lineNumber: 200,
       columnNumber: 9
     }
-  }, "01 \u2014 05", /*#__PURE__*/React.createElement("br", {
+  }, "01 \u2014 06", /*#__PURE__*/React.createElement("br", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 201,
@@ -2542,7 +2570,18 @@ function Work(_ref3) {
         lineNumber: 240,
         columnNumber: 17
       }
-    }, p.tagline[t.language])), /*#__PURE__*/React.createElement("div", {
+    }, p.tagline[t.language]), /*#__PURE__*/React.createElement("div", {
+      className: "mono-label",
+      style: {
+        marginTop: 10,
+        color: hover ? "var(--bg)" : t.accentColor
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 243,
+        columnNumber: 17
+      }
+    }, p.role[t.language])), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         flexWrap: "wrap",
@@ -2616,7 +2655,7 @@ function Services(_ref4) {
   var t = _ref4.t;
   var c = COPY[t.language];
   return /*#__PURE__*/React.createElement("section", {
-    id: "s3",
+    id: "services",
     style: {
       background: "var(--bg-card)",
       padding: "120px 40px",
@@ -2773,7 +2812,7 @@ function Process(_ref5) {
   var t = _ref5.t;
   var c = COPY[t.language];
   return /*#__PURE__*/React.createElement("section", {
-    id: "s4",
+    id: "s3",
     style: {
       background: "var(--bg)",
       padding: "120px 40px"
@@ -3038,8 +3077,8 @@ function About(_ref6) {
       columnNumber: 11
     }
   }, [{
-    k: "2",
-    v: t.language === "pt" ? "Entregues" : "Shipped"
+    k: "6",
+    v: t.language === "pt" ? "Projetos publicados" : "Published projects"
   }].map(function (s) {
     return /*#__PURE__*/React.createElement("div", {
       key: s.v,
@@ -3408,7 +3447,7 @@ function Contact(_ref0) {
       lineNumber: 484,
       columnNumber: 13
     }
-  }, [["GitHub", "https://github.com/edumatosr6-svg"], ["LinkedIn", "#"], ["Twitter", "#"]].map(function (_ref1) {
+  }, [["GitHub", "https://github.com/edumatosr6-svg"], ["WhatsApp", "https://wa.me/554198258901"]].map(function (_ref1) {
     var _ref10 = _slicedToArray(_ref1, 2),
       label = _ref10[0],
       url = _ref10[1];
@@ -3479,7 +3518,7 @@ function Contact(_ref0) {
       lineNumber: 513,
       columnNumber: 11
     }
-  }, "V2.0 \xB7 BUILT WITH REACT + THREE.JS"))));
+  }, t.language === "pt" ? "V2.0 \xB7 FEITO COM REACT + THREE.JS" : "V2.0 \xB7 BUILT WITH REACT + THREE.JS"))));
 }
 Object.assign(window, {
   Hero: Hero,

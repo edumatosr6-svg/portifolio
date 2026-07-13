@@ -88,6 +88,11 @@ export default function App() {
           document.title = pageTitle
         }
 
+        const htmlLang = sourceDoc.documentElement.getAttribute('lang')
+        if (htmlLang) {
+          document.documentElement.setAttribute('lang', htmlLang)
+        }
+
         const htmlStyle = sourceDoc.documentElement.getAttribute('style')
         if (htmlStyle) {
           document.documentElement.setAttribute('style', htmlStyle)
@@ -99,9 +104,6 @@ export default function App() {
         // The standalone scripts are UMD-style and expect globals.
         window.React = React
         window.ReactDOM = { createRoot }
-        const THREE = await import('three')
-        window.THREE = THREE
-
         const mountNode = document.getElementById(STANDALONE_ROOT_ID)
         if (!mountNode) {
           throw new Error('Standalone mount node not found')
