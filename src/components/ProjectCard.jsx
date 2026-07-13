@@ -42,20 +42,22 @@ export default function ProjectCard({ project }) {
 
       {/* Buttons */}
       <div className="flex gap-2 pt-1">
-        <a
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-accent to-accent-2 px-3 py-2 text-sm font-medium text-white transition-opacity duration-200 hover:opacity-90 active:opacity-80"
-        >
-          <ExternalLinkIcon className="w-3.5 h-3.5" />
-          View Project
-        </a>
+        {liveUrl && (
+          <a
+            href={liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-accent to-accent-2 px-3 py-2 text-sm font-medium text-white transition-opacity duration-200 hover:opacity-90 active:opacity-80"
+          >
+            <ExternalLinkIcon className="w-3.5 h-3.5" />
+            View Project
+          </a>
+        )}
         <a
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 rounded-lg border border-border bg-transparent px-4 py-2 text-sm font-medium text-muted transition-all duration-200 hover:border-border-h hover:text-primary"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-transparent px-4 py-2 text-sm font-medium text-muted transition-all duration-200 hover:border-border-h hover:text-primary"
         >
           <GitHubIcon className="w-3.5 h-3.5" />
           Code

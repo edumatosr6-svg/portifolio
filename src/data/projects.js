@@ -49,4 +49,14 @@ export const projects = [
     liveUrl: "https://pokemon-fawn-nu.vercel.app",
     githubUrl: "https://github.com/edumatosr6-svg/Pokemon-evolution",
   },
+  {
+    id: 6,
+    title: "OTServer Lua Systems",
+    description:
+      "Technical gameplay systems for TFS 1.4+: daily rewards, a party boss arena with damage-based rewards, and a custom combat spell built with RevScriptSys.",
+    tech: ["Lua", "TFS 1.4+", "RevScriptSys", "Gameplay Systems"],
+    status: "in-progress",
+    githubUrl:
+      "https://github.com/edumatosr6-svg/portifolio/tree/main/otserver-lua-systems",
+  },
 ]
